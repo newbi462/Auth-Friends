@@ -5,12 +5,15 @@ import './App.scss';
 import { Route, Link, Switch } from "react-router-dom";
 
 import { Login } from "./components/Login";
+import { FriendsList }  from "./components/FriendsList";
+import { PrivateRoute } from "./auth/PrivateRoute";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <Switch>
+          <PrivateRoute path="/protected" component={FriendsList} />
           <Route path="/login" component={Login} />
           <Route component={Login} />
         </Switch>

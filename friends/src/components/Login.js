@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 import { axiosWithAuth } from "../auth/axiosWithAuth";
 
-export const Login = () => {
+export const Login = (props) => {
+  //NEED PROPS FOR THE ROUTE PROPS
   const [credentials, setCredentials] = useState(
     {
       username: "",
@@ -29,9 +30,9 @@ export const Login = () => {
     axiosWithAuth()
       .post("/login", credentials)
       .then(responce => {
-        //console.log(responce);
+        console.log(responce);
         localStorage.setItem("token", responce.data.payload);
-        //this.props.history.push("/protected");
+        props.history.push("/protected");
       })
       .catch(error => console.log(error));
   };
