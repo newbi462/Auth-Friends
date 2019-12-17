@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { axiosWithAuth } from "../auth/axiosWithAuth";
+
 export const Login = () => {
   const [credentials, setCredentials] = useState(
     {
@@ -23,7 +25,15 @@ export const Login = () => {
   };
 
   const login = (event) => {
-
+    event.preventDefault();//WONT LOAD THE LOG UNLESS YOU OVER RIDE DEFULT
+    axiosWithAuth()
+      .post("/login", credentials)
+      .then(responce => {
+        //console.log(responce);
+        localStorage.setItem("token", responce.data.payload);
+        //this.props.history.push("/protected");
+      })
+      .catch(error => console.log(error));
   };
 
   return (
