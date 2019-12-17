@@ -6,7 +6,7 @@ export const FriendsList = () => {
 
   return (
     <>
-test dats
+ Cant get here
     </>
   );
 };
